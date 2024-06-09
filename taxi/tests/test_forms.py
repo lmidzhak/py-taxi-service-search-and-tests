@@ -4,7 +4,7 @@ from taxi.forms import (
     DriverCreationForm,
     ManufacturerNameSearchForm,
     DriverUsernameSearchForm,
-    CarModelSearchForm
+    CarModelSearchForm,
 )
 
 
@@ -40,49 +40,34 @@ class SearchFormsTests(TestCase):
         form_data = {"username": "test.user"}
         form = DriverUsernameSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(
-            form.cleaned_data["username"],
-            "test.user"
-        )
+        self.assertEqual(form.cleaned_data["username"], "test.user")
 
     def test_driver_search_form_empty(self):
         form_data = {"username": ""}
         form = DriverUsernameSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(
-            form.cleaned_data["username"],
-            "")
+        self.assertEqual(form.cleaned_data["username"], "")
 
     def test_car_search_form_valid(self):
         form_data = {"model": "test.model"}
         form = CarModelSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(
-            form.cleaned_data["model"],
-            "test.model"
-        )
+        self.assertEqual(form.cleaned_data["model"], "test.model")
 
     def test_car_search_form_empty(self):
         form_data = {"model": ""}
         form = CarModelSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(
-            form.cleaned_data["model"],
-            "")
+        self.assertEqual(form.cleaned_data["model"], "")
 
     def test_manufacturer_search_form_valid(self):
         form_data = {"name": "test.name"}
         form = ManufacturerNameSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(
-            form.cleaned_data["name"],
-            "test.name"
-        )
+        self.assertEqual(form.cleaned_data["name"], "test.name")
 
     def test_manufacturer_search_form_empty(self):
         form_data = {"name": ""}
         form = ManufacturerNameSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(
-            form.cleaned_data["name"],
-            "")
+        self.assertEqual(form.cleaned_data["name"], "")

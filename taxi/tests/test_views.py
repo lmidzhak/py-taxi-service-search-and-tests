@@ -33,8 +33,7 @@ class PublicDriverTests(TestCase):
 class PrivateManufacturerTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
-            username='testuser',
-            password="test1234"
+            username="testuser", password="test1234"
         )
         self.client.force_login(self.user)
 
@@ -54,8 +53,7 @@ class PrivateManufacturerTests(TestCase):
 class PrivateCarTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
-            username='testuser',
-            password="test1234"
+            username="testuser", password="test1234"
         )
         self.client.force_login(self.user)
 
@@ -77,19 +75,18 @@ class PrivateCarTests(TestCase):
 class PrivateDriverTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
-            username='testuser',
-            password="test1234"
+            username="testuser", password="test1234"
         )
         self.client.force_login(self.user)
 
     def test_retrieve_manufacturer(self):
         get_user_model().objects.create_user(
-            username='testuser1',
+            username="testuser1",
             password="test1233",
             license_number="TES12345"
         )
         get_user_model().objects.create_user(
-            username='testuser2',
+            username="testuser2",
             password="test1244",
             license_number="TES12346"
         )
@@ -112,8 +109,19 @@ class PrivateDriverTests(TestCase):
             "last_name": "Test_last_name",
         }
         self.client.post(reverse("taxi:driver-create"), data=form_data)
-        new_driver = get_user_model().objects.get(username=form_data["username"])
+        new_driver = get_user_model().objects.get(
+            username=form_data["username"]
+        )
 
-        self.assertEqual(new_driver.first_name, form_data["first_name"])
-        self.assertEqual(new_driver.last_name, form_data["last_name"])
-        self.assertEqual(new_driver.license_number, form_data["license_number"])
+        self.assertEqual(
+            new_driver.first_name,
+            form_data["first_name"]
+        )
+        self.assertEqual(
+            new_driver.last_name,
+            form_data["last_name"]
+        )
+        self.assertEqual(
+            new_driver.license_number,
+            form_data["license_number"]
+        )
